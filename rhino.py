@@ -39,7 +39,7 @@ FACTS_RHINOS = [('The name "rhinoceros" comes from Greek "rhino," meaning nose, 
 
 settings = {}
 systemrandom = random.SystemRandom()
-bot = commands.Bot(command_prefix=["*", "\U0001F98F ", "\U0001F98F"])
+bot = commands.Bot(command_prefix=commands.when_mentioned_or("*", "\U0001F98F ", "\U0001F98F"))
 bot.session = aiohttp.ClientSession(loop=bot.loop)
 
 # Ignore this meme.
