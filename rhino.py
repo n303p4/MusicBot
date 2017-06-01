@@ -65,7 +65,9 @@ async def help(ctx, *, command:str=None):
         help = ", ".join(f"*{command.name}" for command in bot.commands if not command.hidden)
         help = (f"{ctx.author.mention}, **Commands**\n```{help}```"
                 "https://github.com/Just-Some-Bots/MusicBot/wiki/Commands")
-        await ctx.send(help)
+        message = await ctx.send(help)
+        await asyncio.sleep(13)
+        await message.delete()
     elif command in bot.all_commands:
         help_pages = await bot.formatter.format_help_for(ctx, bot.all_commands[command])
         for page in help_pages:
