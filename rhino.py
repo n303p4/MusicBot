@@ -111,9 +111,7 @@ async def shuffle(ctx):
     await ctx.send("Done.")
 
 @bot.command()
-@commands.has_permissions(manage_messages=True)
-@commands.bot_has_permissions(manage_messages=True)
-async def clear(ctx, limit:int):
+async def clear(ctx):
     """Clears the queue."""
     await ctx.send("There is no queue. Only Rhino.")
 
