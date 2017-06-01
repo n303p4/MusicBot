@@ -16,26 +16,25 @@ HEADERS = {"User-Agent": USER_AGENT}
 
 FILE_SETTINGS = "config.json"
 FACTS_RHINOS = [('The name "rhinoceros" comes from Greek "rhino," meaning nose, and "ceros," '
-                 'meaning horn.'),
-                ('In many cultures, rhino horns are thought to have healing properties, which '
-                 'has led to them being hunted to near extinction.'),
-                ('The smallest species of rhino is the Sumatran rhinoceros, standing between 112 and '
-                 '145 cm at the shoulder and having a head-body length of 2.36 to 3.18 m.'),
+                 'meaning horn. I\'m talking about your face, by the way.'),
+                ('In many cultures, rhino horns are believed to have healing properties, and '
+                 'this has led to their use in medicines. '
+                 'They\'re also made of the same substance as your fingernails. Ew.'),
+                ('The smallest species of rhino is the Sumatran rhinoceros, standing between 112 '
+                 'and 145 cm at the shoulder and having a head-body length of 2.36 to 3.18 m. So '
+                 'it is still fairly large - approximately the size of your significant other.'),
                 ('There are five species of rhino - the black rhino, the white rhino, the Indian '
-                 'rhino, the Javan rhino, and the Sumatran rhino.'),
+                 'rhino, the Javan rhino, and the Sumatran rhino. There is also a RhinoBot.'),
                 ('The white rhino is the largest species of rhino, and the largest land '
-                 'animal after the elephants.'),
-                ('Rhino horns are made of keratin, the same substance as your fingernails and '
-                 'hair.'),
-                ('A group of rhinos is called a "herd" or a "crash".'),
-                ("The white and black rhinos are actually both gray. The white rhino's name comes "
-                 'from Afrikaans "weit" meaning "wide", referring to the animal\'s large mouth. '
-                 'The black rhino\'s name may come from the dark mud that they often wallow in.'),
-                ('The closest living relatives of the rhinos are tapirs, horses, and zebras.'),
-                ('Rhinos can run up to 40 miles per hour.'),
-                ('Rhinos have a bad sense of smell, but strong senses of smell and hearing.'),
-                ("Of all mammal fights within the same species, black rhinos have the highest "
-                 "death rates - 50% of males and 30% of females.")]
+                 'animal after the elephants. It is very large.'),
+                ('Rhino horns are pointy.'),
+                ('A rhino crashing into you would hurt. By the way, a group of rhinos is called '
+                 'a "crash".'),
+                ("Rhinos are gray, even black rhinos and white rhinos. They share this property "
+                 "with elephants, among other things."),
+                ('Rhinos have toes.'),
+                ('Rhinos can run up to 40 miles per hour, which is very fast.'),
+                ('Rhinos have a bad sense of sight, but strong senses of smell and hearing.')]
 
 settings = {}
 systemrandom = random.SystemRandom()
