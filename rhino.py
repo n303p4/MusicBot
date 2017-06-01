@@ -30,8 +30,7 @@ FACTS_RHINOS = [('The name "rhinoceros" comes from Greek "rhino," meaning nose, 
                 ('Rhino horns are pointy.'),
                 ('A rhino crashing into you would hurt. By the way, a group of rhinos is called '
                  'a "crash".'),
-                ("Rhinos are gray, even black rhinos and white rhinos. They share this property "
-                 "with elephants, among other things."),
+                ("Rhinos are gray. They share this property with elephants, among other things."),
                 ('Rhinos have toes.'),
                 ('Rhinos can run up to 40 miles per hour, which is very fast.'),
                 ('Rhinos have a bad sense of sight, but strong senses of smell and hearing.')]
