@@ -113,6 +113,7 @@ async def shuffle(ctx):
     await ctx.send("Done.")
 
 @bot.command()
+@commands.cooldown(5, 10, commands.BucketType.channel)
 async def clear(ctx):
     """Clears the queue."""
     await ctx.send("There is no queue. Only Rhino.")
@@ -174,7 +175,6 @@ async def restart(ctx):
     os.execv(sys.executable, [sys.executable] + sys.argv + ["&"])
 
 @bot.command(aliases=["about"])
-@commands.is_owner()
 @commands.cooldown(5, 10, commands.BucketType.channel)
 async def fact(ctx):
     """Display a random fact about a rhino."""
