@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import asyncio
 import json
 import os
 import random
@@ -55,19 +56,96 @@ async def on_command_error(ctx, exc):
     if not isinstance(exc, (commands.CommandNotFound, commands.CheckFailure)):
         message = await ctx.send(f"{exc}")
 
+## HELP COMMAND ##
 @bot.command()
 @commands.cooldown(5, 10, commands.BucketType.channel)
 async def help(ctx, *, command:str=None):
     """Display help about the bot."""
     if not command:
         help = ", ".join(f"{ctx.prefix}{command.name}" for command in bot.commands if not command.hidden)
-        help = f"{ctx.author.mention}, **Commands**\n```{help}```https://github.com/Just-Some-Bots/MusicBot"
+        help = (f"{ctx.author.mention}, **Commands**\n```{help}```"
+                "https://github.com/Just-Some-Bots/MusicBot/wiki/Commands")
         await ctx.send(help)
     elif command in bot.all_commands:
         help_pages = await bot.formatter.format_help_for(ctx, bot.all_commands[command])
         for page in help_pages:
             await ctx.send(page)
 
+## MUSIC COMMANDS ##
+@commands.command()
+@commands.cooldown(5, 10, commands.BucketType.channel)
+async def play(ctx):
+    """You just got played!"""
+    await ctx.send("You just got played!")
+
+@commands.command()
+@commands.cooldown(5, 10, commands.BucketType.channel)
+async def queue(ctx):
+    """Prints a queue."""
+    await ctx.send("http://i.telegraph.co.uk/multimedia/archive/02854/queue_1446267c_2854335b.jpg")
+
+@commands.command()
+@commands.cooldown(5, 10, commands.BucketType.channel)
+async def np(ctx):
+    """No problem!"""
+    await ctx.send("No problem!")
+
+@commands.command()
+@commands.cooldown(5, 10, commands.BucketType.channel)
+async def skip(ctx):
+    """Skip someone's face."""
+    await ctx.send("http://www.cardboardrepublic.com/wp-content/uploads/2014/05/uno-skip.png")
+
+@commands.command()
+@commands.cooldown(5, 10, commands.BucketType.channel)
+async def search(ctx):
+    """Search someone's face."""
+    await ctx.send("I'll search your face!")
+
+@commands.command()
+@commands.cooldown(5, 10, commands.BucketType.channel)
+async def shuffle(ctx):
+    """Shuffles a deck of cards."""
+    await ctx.send("Shuffling a deck of cards...")
+    await asyncio.sleep(15)
+    await ctx.send("Done.")
+
+@commands.command()
+@commands.has_permissions(manage_messages=True)
+@commands.bot_has_permissions(manage_messages=True)
+async def clear(ctx, limit:int):
+    """Clears the queue."""
+    await ctx.send("There is no queue. Only Rhino.")
+
+@commands.command()
+@commands.cooldown(5, 10, commands.BucketType.channel)
+async def pause(ctx):
+    """Pauses for a few seconds."""
+    await ctx.send("...")
+    await asyncio.sleep(5)
+    await ctx.send("Okay.")
+
+@commands.command()
+@commands.cooldown(5, 10, commands.BucketType.channel)
+async def resume(ctx):
+    """Shows a resume."""
+    await ctx.send("http://www.nafme.org/wp-content/files/2016/01/Sample-Resume-3-1.jpg")
+
+@commands.command()
+@commands.cooldown(5, 10, commands.BucketType.channel)
+async def volume(ctx):
+    """Volumetric analysis."""
+    await ctx.send("http://users.iconz.co.nz/trout/vaSoln.gif")
+
+@commands.command()
+@commands.cooldown(5, 10, commands.BucketType.channel)
+async def summon(ctx):
+    """Blue-Eyes White Dragon!"""
+    await ctx.send(("I summon Blue-Eyes White Dragon!\n"
+                    "https://vignette2.wikia.nocookie.net/yugioh/images/d/d4/"
+                    "BlueEyesWhiteDragon-DUSA-EN-UR-1E.png"))
+
+## BOT RELATED AND OWNER COMMANDS ##
 @bot.command()
 @commands.is_owner()
 async def clean(ctx, times:int=1):
