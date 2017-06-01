@@ -5,8 +5,14 @@ import os
 import random
 import sys
 
+import aiohttp
+from bs4 import BeautifulSoup
 import discord
 from discord.ext import commands
+
+URL_GOOGLE_RHINO = "https://www.google.com/search?q=rhino+animal&tbm=isch"
+USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64; rv:54.0) Gecko/20100101 Firefox/54.0"
+HEADERS = {"User-Agent": USER_AGENT}
 
 FILE_SETTINGS = "config.json"
 FACTS_RHINOS = [('The name "rhinoceros" comes from Greek "rhino," meaning nose, and "ceros," '
@@ -34,6 +40,7 @@ FACTS_RHINOS = [('The name "rhinoceros" comes from Greek "rhino," meaning nose, 
 settings = {}
 systemrandom = random.SystemRandom()
 bot = commands.Bot(command_prefix=["*", "\U0001F98F ", "\U0001F98F"])
+bot.session = aiohttp.ClientSession(loop=bot.loop)
 
 # Ignore this meme.
 del bot.all_commands["help"]
@@ -46,7 +53,7 @@ def is_human(ctx):
 
 @bot.event
 async def on_command_error(ctx, exc):
-    if not isinstance(exception, (commands.CommandNotFound, commands.CheckFailure)):
+    if not isinstance(exc, (commands.CommandNotFound, commands.CheckFailure)):
         message = await ctx.send(f"{exc}")
 
 @bot.command()
@@ -72,11 +79,11 @@ async def clean(ctx, times:int=1):
     async for message in ctx.channel.history():
         if times_executed == times:
             break
-        if message.author.id == ctx.bot.user.id:
+        if message.author.id == bot.user.id:
             await message.delete()
             times_executed += 1
 
-@bot.command()
+@bot.command(aliases=["halt", "kys"])
 @commands.is_owner()
 async def shutdown(ctx):
     """Shut the bot down."""
@@ -89,7 +96,7 @@ async def restart(ctx):
     await bot.logout()
     os.execv(sys.executable, [sys.executable] + sys.argv + ["&"])
 
-@bot.command(aliases=["about", "rhino"])
+@bot.command(aliases=["about"])
 @commands.is_owner()
 @commands.cooldown(5, 10, commands.BucketType.channel)
 async def fact(ctx):
@@ -97,6 +104,21 @@ async def fact(ctx):
     fact = systemrandom.choice(FACTS_RHINOS)
     message = f"**Did you know?**\n{fact}"
     await ctx.send(message)
+
+@bot.command(aliases=["rhino", "picture", "google", "gimage"])
+@commands.cooldown(5, 10, commands.BucketType.channel)
+async def image(ctx):
+    """Fetch a random image of a rhino."""
+    async with bot.session.request("GET", URL_GOOGLE_RHINO, headers=HEADERS) as response:
+        if response.status == 200:
+            data = await response.text()
+            soup = BeautifulSoup(data)
+            links = soup.find_all("div", class_="rg_meta")
+            for index in range(len(links)):
+                links[index] = json.loads(links[index].contents[0]).get("ou")
+            await ctx.send(systemrandom.choice(links))
+        else:
+            await ctx.send("Whoops, couldn't find a picture of a rhino.")
 
 if __name__ == "__main__":
     try:
