@@ -72,37 +72,37 @@ async def help(ctx, *, command:str=None):
             await ctx.send(page)
 
 ## MUSIC COMMANDS ##
-@commands.command()
+@bot.command()
 @commands.cooldown(5, 10, commands.BucketType.channel)
 async def play(ctx):
     """You just got played!"""
     await ctx.send("You just got played!")
 
-@commands.command()
+@bot.command()
 @commands.cooldown(5, 10, commands.BucketType.channel)
 async def queue(ctx):
     """Prints a queue."""
     await ctx.send("http://i.telegraph.co.uk/multimedia/archive/02854/queue_1446267c_2854335b.jpg")
 
-@commands.command()
+@bot.command()
 @commands.cooldown(5, 10, commands.BucketType.channel)
 async def np(ctx):
     """No problem!"""
     await ctx.send("No problem!")
 
-@commands.command()
+@bot.command()
 @commands.cooldown(5, 10, commands.BucketType.channel)
 async def skip(ctx):
     """Skip someone's face."""
     await ctx.send("http://www.cardboardrepublic.com/wp-content/uploads/2014/05/uno-skip.png")
 
-@commands.command()
+@bot.command()
 @commands.cooldown(5, 10, commands.BucketType.channel)
 async def search(ctx):
     """Search someone's face."""
     await ctx.send("I'll search your face!")
 
-@commands.command()
+@bot.command()
 @commands.cooldown(5, 10, commands.BucketType.channel)
 async def shuffle(ctx):
     """Shuffles a deck of cards."""
@@ -110,14 +110,14 @@ async def shuffle(ctx):
     await asyncio.sleep(15)
     await ctx.send("Done.")
 
-@commands.command()
+@bot.command()
 @commands.has_permissions(manage_messages=True)
 @commands.bot_has_permissions(manage_messages=True)
 async def clear(ctx, limit:int):
     """Clears the queue."""
     await ctx.send("There is no queue. Only Rhino.")
 
-@commands.command()
+@bot.command()
 @commands.cooldown(5, 10, commands.BucketType.channel)
 async def pause(ctx):
     """Pauses for a few seconds."""
@@ -125,19 +125,19 @@ async def pause(ctx):
     await asyncio.sleep(5)
     await ctx.send("Okay.")
 
-@commands.command()
+@bot.command()
 @commands.cooldown(5, 10, commands.BucketType.channel)
 async def resume(ctx):
     """Shows a resume."""
     await ctx.send("http://www.nafme.org/wp-content/files/2016/01/Sample-Resume-3-1.jpg")
 
-@commands.command()
+@bot.command()
 @commands.cooldown(5, 10, commands.BucketType.channel)
 async def volume(ctx):
     """Volumetric analysis."""
     await ctx.send("http://users.iconz.co.nz/trout/vaSoln.gif")
 
-@commands.command()
+@bot.command()
 @commands.cooldown(5, 10, commands.BucketType.channel)
 async def summon(ctx):
     """Blue-Eyes White Dragon!"""
