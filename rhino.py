@@ -62,7 +62,7 @@ async def on_command_error(ctx, exc):
 async def help(ctx, *, command:str=None):
     """Display help about the bot."""
     if not command:
-        help = ", ".join(f"{ctx.prefix}{command.name}" for command in bot.commands if not command.hidden)
+        help = ", ".join(f"*{command.name}" for command in bot.commands if not command.hidden)
         help = (f"{ctx.author.mention}, **Commands**\n```{help}```"
                 "https://github.com/Just-Some-Bots/MusicBot/wiki/Commands")
         await ctx.send(help)
