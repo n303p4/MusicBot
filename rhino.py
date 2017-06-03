@@ -108,9 +108,14 @@ async def search(ctx):
 @commands.cooldown(5, 10, commands.BucketType.channel)
 async def shuffle(ctx):
     """Shuffles a deck of cards."""
-    await ctx.send("Shuffling a deck of cards...")
-    await asyncio.sleep(15)
-    await ctx.send("Done.")
+    option = random.randint(1, 5):
+    if option <= 4:
+        await ctx.send("Shuffling a deck of cards...")
+        await asyncio.sleep(15)
+        await ctx.send("Done.")
+    else:
+        # Alphabet shuffle.
+        await ctx.send("https://www.youtube.com/watch?v=g02WKrWjUgA")
 
 @bot.command()
 @commands.cooldown(5, 10, commands.BucketType.channel)
