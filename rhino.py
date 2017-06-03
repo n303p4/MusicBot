@@ -108,7 +108,7 @@ async def search(ctx):
 @commands.cooldown(5, 10, commands.BucketType.channel)
 async def shuffle(ctx):
     """Shuffles a deck of cards."""
-    option = random.randint(1, 5):
+    option = random.randint(1, 5)
     if option <= 4:
         await ctx.send("Shuffling a deck of cards...")
         await asyncio.sleep(15)
